@@ -20,4 +20,4 @@ Ce TP consiste à modifier le projet de base android (Empty view Activity) pour 
 - Installer Android Studio (V)
 
 <h1>  </h1> 
-<img src="captures/1.png" />
+<img src="./captures/1.png" />
