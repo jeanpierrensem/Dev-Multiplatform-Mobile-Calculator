@@ -1,0 +1,110 @@
+<LinearLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"    xmlns:tools="http://schemas.android.com/tools"     android:layout_width="match_parent"     
+	android:layout_height="match_parent"     
+	android:orientation="vertical"     
+	android:padding="10dp"     
+	android:layout_margin="10dp"     
+	tools:context=".MainActivity">
+	<EditText       
+		android:id="@+id/editTextAmount"       
+		android:layout_width="match_parent"       android:layout_height="wrap_content"        
+		android:background="@drawable/edit_text_style"       
+		android:inputType="number"
+		 android:layout_margin="10dp"        
+		 android:padding="10dp"        
+		 /> 
+	<Button        
+		 android:id="@+id/btnCompute"         
+		 android:layout_width="match_parent"         android:layout_height="wrap_content"         
+		 android:background="@color/colorPrimary"         
+		 android:textColor="@color/white"         
+		 android:text="Compute"        
+		 android:layout_margin="10dp"         
+		 />
+	<TextView        
+		 android:id="@+id/textViewResult"        android:layout_width="match_parent"         android:layout_height="wrap_content"         
+		 android:text="0"         
+		 android:layout_margin="10dp"         
+		 android:background="@drawable/text_view_style"         android:padding="10dp"         
+		 android:textAlignment="center"         
+		 android:textSize="22dp"         
+		 android:textColor="@color/colorPrimary"         
+		 />     
+	<ListView         
+		 android:id="@+id/listViewResults"         android:layout_width="match_parent"         android:layout_height="match_parent"        
+		 android:layout_margin="10dp"       
+		 />
+</LinearLayout>
+
+
+
+<!-- Les ressources-->
+<resources>     <!-- Base application theme. styles.xml-->     
+	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">         
+	<!-- Customize your theme here. -->       
+	<item name="colorPrimary">@color/colorPrimary</item>        
+	<item name="colorPrimaryDark">@color/colorPrimaryDark</item>         
+	<item name="colorAccent">@color/colorAccent</item>     
+	</style>
+</resources>
+
+
+
+<resources>      <!-- Les couleurs personalisée colors.xml--> 
+   <color name="colorPrimary">#FF5722</color>     
+   <color name="colorPrimaryDark">#FFC107</color> 
+   <color name="colorAccent">#03DAC5</color>
+   <color name="white">#FFFFFF</color>
+</resources>
+
+
+<!-- Les drawables --->
+<!-- Edit_text_style--->
+<?xml version="1.0" encoding="utf-8"?> 
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<item>
+		<shape android:shape="rectangle">
+			<stroke 
+				android:width="1dp" android:color="@color/colorPrimary">
+			</stroke>           
+			<size android:height="40dp"></size>        
+		</shape>
+	</item>
+</selector>
+
+<!-- Text_view_style.xml--->
+<?xml version="1.0" encoding="utf-8"?>
+	<selector xmlns:android="http://schemas.android.com/apk/res/android">
+		<item>
+			<shape android:shape="rectangle">
+				<stroke 
+					android:width="1dp"
+					android:color="@color/colorPrimaryDark">
+				</stroke>           
+				<size android:height="40dp"></size>        
+			</shape>
+		</item>
+	</selector>
+
+<!-- Main Class -->
+@Override   
+protected void onCreate(Bundle savedInstanceState) {        
+	super.onCreate(savedInstanceState);       
+	setContentView(R.layout.activity_main);
+      // Code à ajouter      
+      EditText editTextAmount=findViewById(R.id.editTextAmount);        
+      Button btnCompute=findViewById(R.id.btnCompute);        
+      TextView textViewResult=findViewById(R.id.textViewResult);        
+      ListView listViewResult=findViewById(R.id.listViewResults);        
+      List<String> data=new ArrayList<>();        
+      ArrayAdapter<String> stringArrayAdapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,data);
+      listViewResult.setAdapter(stringArrayAdapter);
+      btnCompute.setOnClickListener((view)->{           
+      		double amount=Double.parseDouble(editTextAmount.getText().toString());
+      		double result=amount*11;     :::      
+      		textViewResult.setText(String.valueOf(result));           
+      		data.add(amount+"=>"+result);         
+      		stringArrayAdapter.notifyDataSetChanged();          
+      		editTextAmount.setText("");
+
+
